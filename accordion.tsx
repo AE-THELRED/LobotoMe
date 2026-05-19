@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   LOBOTO-ME · 1950s × Clinical × Fallout Pre-War (FICTIONAL CONCEPT)
+   --------------------------------------------------------------------------
+   Palette:
+     atomic red     · #D7263D   (Lustig / Müller-Brockmann red)
+     vault yellow   · #F5C518   (Kodak / Vault-Tec yellow)
+     lithium pink   · #F6C8C0   (housewife-rouge pink)
+     aqua clinical  · #B8D8D8   (sterile counter aqua)
+     ink            · #141414   (newsprint black)
+     cream paper    · #F5EFE0   (aged stock)
+   ========================================================================== */
+
+/* LIGHT MODE — "Operating Room with Daisies" */
+:root {
+  --button-outline: rgba(20, 20, 20, 0.12);
+  --badge-outline: rgba(20, 20, 20, 0.08);
+  --opaque-button-border-intensity: -10;
+  --elevate-1: rgba(20, 20, 20, 0.04);
+  --elevate-2: rgba(20, 20, 20, 0.09);
+
+  /* Surfaces — cream paper on a faintly aqua-tinted clinical white */
+  --background: 40 35% 95%;          /* cream paper */
+  --foreground: 0 0% 8%;             /* near-black ink */
+  --border: 30 12% 82%;
+  --card: 0 0% 100%;                 /* sterile white card */
+  --card-foreground: 0 0% 8%;
+  --card-border: 30 12% 86%;
+
+  --sidebar: 180 18% 91%;            /* clinical aqua tint */
+  --sidebar-foreground: 0 0% 8%;
+  --sidebar-border: 180 14% 82%;
+  --sidebar-primary: 351 67% 50%;    /* atomic red */
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 180 20% 86%;
+  --sidebar-accent-foreground: 0 0% 8%;
+  --sidebar-ring: 351 67% 50%;
+
+  --popover: 40 35% 97%;
+  --popover-foreground: 0 0% 8%;
+  --popover-border: 30 12% 82%;
+
+  --primary: 351 67% 50%;            /* atomic red — primary brand voice */
+  --primary-foreground: 40 60% 97%;
+  --secondary: 40 30% 88%;
+  --secondary-foreground: 0 0% 8%;
+
+  --muted: 180 12% 88%;              /* faint aqua wash */
+  --muted-foreground: 0 0% 35%;
+
+  --accent: 46 92% 53%;              /* vault yellow */
+  --accent-foreground: 0 0% 8%;
+
+  --destructive: 0 75% 38%;
+  --destructive-foreground: 40 60% 97%;
+
+  --input: 30 10% 78%;
+  --ring: 351 67% 50%;
+
+  /* Chart palette — collage colours */
+  --chart-1: 351 67% 50%; /* atomic */
+  --chart-2: 46 92% 53%;  /* vault */
+  --chart-3: 9 60% 84%;   /* lithium */
+  --chart-4: 180 26% 67%; /* aqua */
+  --chart-5: 0 0% 8%;     /* ink */
+
+  /* Brand-specific tokens — used directly with bg-[hsl(var(--...))]/text-... */
+  --atomic: 351 67% 50%;
+  --atomic-foreground: 40 60% 97%;
+  --vault: 46 92% 53%;
+  --vault-foreground: 0 0% 8%;
+  --lithium: 9 60% 84%;
+  --lithium-foreground: 0 0% 8%;
+  --aqua: 180 26% 67%;
+  --aqua-foreground: 0 0% 8%;
+  --ink: 0 0% 8%;
+  --ink-foreground: 40 60% 97%;
+  --paper: 40 35% 95%;
+
+  --font-sans: "IBM Plex Sans", "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", "Bodoni Moda", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", Menlo, monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --radius: 0.125rem; /* nearly square — clinical/modernist */
+
+  --shadow-sm: 0 1px 0 0 hsl(0 0% 0% / 0.06);
+  --shadow: 0 1px 0 0 hsl(0 0% 0% / 0.06), 0 2px 8px -2px hsl(0 0% 0% / 0.06);
+  --shadow-lg: 0 2px 0 0 hsl(0 0% 0% / 0.08), 0 12px 28px -8px hsl(0 0% 0% / 0.10);
+
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Fallback computed borders (preserve template behaviour) */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+/* DARK MODE — "After-Hours Vault" */
+.dark {
+  --button-outline: rgba(245, 239, 224, 0.10);
+  --badge-outline: rgba(245, 239, 224, 0.06);
+  --opaque-button-border-intensity: 12;
+  --elevate-1: rgba(245, 239, 224, 0.05);
+  --elevate-2: rgba(245, 239, 224, 0.10);
+
+  --background: 0 0% 7%;
+  --foreground: 40 30% 92%;
+  --border: 0 0% 18%;
+  --card: 0 0% 10%;
+  --card-foreground: 40 30% 92%;
+  --card-border: 0 0% 15%;
+
+  --sidebar: 0 0% 9%;
+  --sidebar-foreground: 40 30% 92%;
+  --sidebar-border: 0 0% 16%;
+  --sidebar-primary: 351 80% 60%;
+  --sidebar-primary-foreground: 0 0% 8%;
+  --sidebar-accent: 0 0% 16%;
+  --sidebar-accent-foreground: 40 30% 92%;
+  --sidebar-ring: 351 80% 60%;
+
+  --popover: 0 0% 11%;
+  --popover-foreground: 40 30% 92%;
+  --popover-border: 0 0% 17%;
+
+  --primary: 351 80% 60%;
+  --primary-foreground: 0 0% 8%;
+  --secondary: 0 0% 16%;
+  --secondary-foreground: 40 30% 92%;
+
+  --muted: 0 0% 14%;
+  --muted-foreground: 40 15% 70%;
+
+  --accent: 46 92% 58%;
+  --accent-foreground: 0 0% 8%;
+
+  --destructive: 0 75% 50%;
+  --destructive-foreground: 0 0% 98%;
+
+  --input: 0 0% 25%;
+  --ring: 351 80% 60%;
+
+  --chart-1: 351 80% 60%;
+  --chart-2: 46 92% 58%;
+  --chart-3: 9 60% 70%;
+  --chart-4: 180 30% 55%;
+  --chart-5: 40 30% 92%;
+
+  --atomic: 351 80% 60%;
+  --atomic-foreground: 0 0% 8%;
+  --vault: 46 92% 58%;
+  --vault-foreground: 0 0% 8%;
+  --lithium: 9 50% 72%;
+  --lithium-foreground: 0 0% 8%;
+  --aqua: 180 30% 55%;
+  --aqua-foreground: 0 0% 8%;
+  --ink: 40 30% 92%;
+  --ink-foreground: 0 0% 8%;
+  --paper: 0 0% 7%;
+
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "ss01" on, "cv11" on;
+  }
+  ::selection { background: hsl(var(--accent) / 0.6); color: hsl(var(--ink)); }
+}
+
+@layer components {
+  /* Magazine slab — Lustig-y blockprint headline */
+  .display-slab {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+  }
+  .display-script {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+  /* Paper-grain background — subtle halftone */
+  .paper-grain {
+    background-color: hsl(var(--paper));
+    background-image:
+      radial-gradient(hsl(0 0% 0% / 0.05) 1px, transparent 1px),
+      radial-gradient(hsl(0 0% 0% / 0.04) 1px, transparent 1px);
+    background-size: 4px 4px, 9px 9px;
+    background-position: 0 0, 2px 2px;
+  }
+  .dark .paper-grain {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(hsl(255 255% 100% / 0.04) 1px, transparent 1px),
+      radial-gradient(hsl(255 255% 100% / 0.03) 1px, transparent 1px);
+  }
+  /* Halftone overlay used inside hero blocks for collage feel */
+  .halftone {
+    background-image: radial-gradient(hsl(var(--ink) / 0.55) 1px, transparent 1.4px);
+    background-size: 5px 5px;
+  }
+  /* Faint horizontal rules (Müller-Brockmann grid feel) */
+  .grid-lines {
+    background-image: linear-gradient(to right, hsl(var(--border) / 0.6) 1px, transparent 1px);
+    background-size: calc(100% / 12) 100%;
+  }
+  /* Aged paper tape (used for taped photos) */
+  .tape {
+    background: hsl(46 60% 70% / 0.55);
+    box-shadow: inset 0 0 0 1px hsl(46 40% 50% / 0.25);
+  }
+  /* Scanline/CRT for Fallout-y bits */
+  .crt {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      hsl(var(--ink) / 0.06) 0 1px,
+      transparent 1px 3px
+    );
+  }
+}
+
+@layer utilities {
+  input[type="search"]::-webkit-search-cancel-button { @apply hidden; }
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+  .no-default-hover-elevate {}
+  .no-default-active-elevate {}
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+  }
+  .toggle-elevate.toggle-elevated::before { background-color: var(--elevate-2); }
+  .border.toggle-elevate::before { inset: -1px; }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) { position: relative; z-index: 0; }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after { background-color: var(--elevate-1); }
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after { background-color: var(--elevate-2); }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after { inset: -1px; }
+
+  /* Marquee */
+  @keyframes loboto-marquee {
+    from { transform: translate3d(0,0,0); }
+    to   { transform: translate3d(-50%,0,0); }
+  }
+  .animate-marquee { animation: loboto-marquee 38s linear infinite; }
+
+  /* Slow blink — siren feel */
+  @keyframes loboto-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.25; }
+  }
+  .animate-blink { animation: loboto-blink 1.6s steps(2, end) infinite; }
+}

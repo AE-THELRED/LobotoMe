@@ -1,0 +1,65 @@
+export function DisclaimerBar({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`bg-ink text-ink-foreground text-[0.7rem] font-mono tracking-widest uppercase ${className}`}
+      data-testid="banner-disclaimer"
+    >
+      <div className="overflow-hidden whitespace-nowrap">
+        <div className="inline-flex animate-marquee gap-12 py-2 pr-12">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span key={i} className="inline-flex items-center gap-3">
+              <span className="inline-block h-2 w-2 rounded-full bg-vault animate-blink" />
+              Fictional school design concept · No medical advice · No real clinicians · Parody only
+              <span className="inline-block h-2 w-2 rounded-full bg-atomic" />
+              Loboto·Me is a satirical mid-century marketplace fiction
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function FooterDisclaimer() {
+  return (
+    <div className="border-t-2 border-ink bg-paper text-foreground" data-testid="footer-disclaimer">
+      <div className="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6 py-10">
+        <div className="col-span-12 md:col-span-5">
+          <div className="eyebrow">Statement of Concept</div>
+          <p className="mt-3 font-serif text-[0.95rem] leading-relaxed italic">
+            Loboto·Me is a <strong>fictional, satirical school design concept</strong> exploring
+            the visual vocabulary of 1950s advertising, sterile clinical surfaces, the
+            lithium-bright cheer of the mid-century housewife archetype, and Fallout pre-war
+            retro-futurism. Nothing on this site is medical, real, bookable, or actionable.
+          </p>
+        </div>
+        <div className="col-span-6 md:col-span-3">
+          <div className="eyebrow">What this is not</div>
+          <ul className="mt-3 space-y-1 text-sm">
+            <li>· Not a medical service</li>
+            <li>· Not a directory of real clinicians</li>
+            <li>· Not a booking platform</li>
+            <li>· Not advice of any kind</li>
+          </ul>
+        </div>
+        <div className="col-span-6 md:col-span-4">
+          <div className="eyebrow">What it is</div>
+          <ul className="mt-3 space-y-1 text-sm">
+            <li>· A design-school marketplace fiction</li>
+            <li>· A typography & collage exercise</li>
+            <li>· An exploration of period aesthetics</li>
+            <li>· A parody of wellness-marketplace UI</li>
+          </ul>
+        </div>
+        <div className="col-span-12 flex flex-col items-start justify-between gap-3 border-t border-ink/15 pt-6 md:flex-row md:items-center">
+          <div className="font-mono text-[0.7rem] uppercase tracking-widest text-muted-foreground">
+            © Loboto·Me Studio · Concept Issue Nº 01 · Spring 1956 / 2026
+          </div>
+          <div className="font-mono text-[0.7rem] uppercase tracking-widest">
+            Issued in the spirit of Müller-Brockmann · Lustig · Bass · Vault-Tec
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
